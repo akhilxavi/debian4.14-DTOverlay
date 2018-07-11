@@ -1,0 +1,74 @@
+From e6440c535591f4137f7bcb4508473917fde4211a Mon Sep 17 00:00:00 2001
+From: Akhil Xavier <akhilxavier@inforcecomputing.com>
+Date: Wed, 4 Jul 2018 13:39:21 +0530
+Subject: [PATCH 6/7] OV5645:Enabled OV5645 camera sensor
+
+---
+ arch/arm64/configs/defconfig |  1 +
+ drivers/media/i2c/Kconfig    | 24 ++++++++++++------------
+ drivers/media/i2c/Makefile   |  2 +-
+ 3 files changed, 14 insertions(+), 13 deletions(-)
+
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index e9eafaf..d0ec6ee 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -382,6 +382,7 @@ CONFIG_VIDEO_RENESAS_VSP1=m
+ CONFIG_VIDEO_QCOM_VENUS=m
+ # CONFIG_MEDIA_SUBDRV_AUTOSELECT is not set
+ CONFIG_VIDEO_OV5640=y
++CONFIG_VIDEO_OV5645=y
+ CONFIG_VIDEO_IMX230=y
+ CONFIG_VIDEO_OV7251=m
+ CONFIG_DRM=m
+diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+index 3d07bb7..5186866 100644
+--- a/drivers/media/i2c/Kconfig
++++ b/drivers/media/i2c/Kconfig
+@@ -596,18 +596,18 @@ config VIDEO_IMX230
+           To compile this driver as a module, choose M here: the
+           module will be called imx230.
+ 
+-#config VIDEO_OV5645
+-#	tristate "OmniVision OV5645 sensor support"
+-#	depends on OF
+-#	depends on I2C && VIDEO_V4L2 && VIDEO_V4L2_SUBDEV_API
+-#	depends on MEDIA_CAMERA_SUPPORT
+-#	select V4L2_FWNODE
+-#	---help---
+-#	  This is a Video4Linux2 sensor-level driver for the OmniVision
+-#	  OV5645 camera.
+-#
+-#	  To compile this driver as a module, choose M here: the
+-#	  module will be called ov5645.
++config VIDEO_OV5645
++	tristate "OmniVision OV5645 sensor support"
++	depends on OF
++	depends on I2C && VIDEO_V4L2 && VIDEO_V4L2_SUBDEV_API
++	depends on MEDIA_CAMERA_SUPPORT
++	select V4L2_FWNODE
++	---help---
++	  This is a Video4Linux2 sensor-level driver for the OmniVision
++	  OV5645 camera.
++
++	  To compile this driver as a module, choose M here: the
++	  module will be called ov5645.
+ 
+ config VIDEO_OV5647
+ 	tristate "OmniVision OV5647 sensor support"
+diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+index 46977f1..c9b071b 100644
+--- a/drivers/media/i2c/Makefile
++++ b/drivers/media/i2c/Makefile
+@@ -63,7 +63,7 @@ obj-$(CONFIG_VIDEO_UPD64083) += upd64083.o
+ obj-$(CONFIG_VIDEO_OV2640) += ov2640.o
+ obj-$(CONFIG_VIDEO_OV5640) += ov5640.o
+ obj-$(CONFIG_VIDEO_IMX230) += imx230.o
+-#obj-$(CONFIG_VIDEO_OV5645) += ov5645.o
++obj-$(CONFIG_VIDEO_OV5645) += ov5645.o
+ obj-$(CONFIG_VIDEO_OV5647) += ov5647.o
+ obj-$(CONFIG_VIDEO_OV5670) += ov5670.o
+ obj-$(CONFIG_VIDEO_OV6650) += ov6650.o
+-- 
+2.7.4
+

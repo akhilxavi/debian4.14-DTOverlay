@@ -1,0 +1,84 @@
+From cff0f122632b307997cdad27609eb1c81a69f3d1 Mon Sep 17 00:00:00 2001
+From: Akhil Xavier <akhilxavier@inforcecomputing.com>
+Date: Mon, 2 Jul 2018 10:43:05 +0530
+Subject: [PATCH 2/7] configs camss added as part of kernel build
+
+---
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 4 ++--
+ arch/arm64/configs/defconfig                 | 8 ++++----
+ kernel/configs/distro.config                 | 2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+index 734a7b5..3c86906 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+@@ -286,7 +286,7 @@
+ 				vdda-supply = <&camera_vdda_2v8>;
+ 				vddd-supply = <&camera_vddd_1v5>;
+ 
+-				//status = "disabled";
++				status = "disabled";
+ 
+ 				port {
+ 					ov5640_ep: endpoint {
+@@ -366,7 +366,7 @@
+ 						clock-lanes = <7>;
+ 						data-lanes = <0 1>;
+ 						remote-endpoint = <&ov5640_ep>;
+-						//status = "disabled";
++						status = "ok";
+ 					};
+ 				};
+ 				port@1 {
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 428d837..2ba247e 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -282,7 +282,7 @@ CONFIG_I2C_IMX=y
+ CONFIG_I2C_MESON=y
+ CONFIG_I2C_MV64XXX=y
+ CONFIG_I2C_PXA=y
+-CONFIG_I2C_QCOM_CCI=m
++CONFIG_I2C_QCOM_CCI=y
+ CONFIG_I2C_QUP=y
+ CONFIG_I2C_RK3X=y
+ CONFIG_I2C_SH_MOBILE=y
+@@ -367,12 +367,12 @@ CONFIG_REGULATOR_S2MPS11=y
+ CONFIG_RC_CORE=m
+ CONFIG_RC_DEVICES=y
+ CONFIG_IR_MESON=m
+-CONFIG_MEDIA_SUPPORT=m
++CONFIG_MEDIA_SUPPORT=y
+ CONFIG_MEDIA_CAMERA_SUPPORT=y
+ CONFIG_MEDIA_CONTROLLER=y
+ CONFIG_VIDEO_V4L2_SUBDEV_API=y
+ CONFIG_V4L_PLATFORM_DRIVERS=y
+-CONFIG_VIDEO_QCOM_CAMSS=m
++CONFIG_VIDEO_QCOM_CAMSS=y
+ CONFIG_V4L_MEM2MEM_DRIVERS=y
+ CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
+ CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
+@@ -381,7 +381,7 @@ CONFIG_VIDEO_RENESAS_FCP=m
+ CONFIG_VIDEO_RENESAS_VSP1=m
+ CONFIG_VIDEO_QCOM_VENUS=m
+ # CONFIG_MEDIA_SUBDRV_AUTOSELECT is not set
+-CONFIG_VIDEO_OV5640=m
++CONFIG_VIDEO_OV5640=y
+ CONFIG_VIDEO_OV7251=m
+ CONFIG_DRM=m
+ CONFIG_DRM_NOUVEAU=m
+diff --git a/kernel/configs/distro.config b/kernel/configs/distro.config
+index d128b17..5a9f9cf 100644
+--- a/kernel/configs/distro.config
++++ b/kernel/configs/distro.config
+@@ -1,5 +1,5 @@
+ # USB camera
+-CONFIG_MEDIA_SUPPORT=m
++CONFIG_MEDIA_SUPPORT=y
+ CONFIG_MEDIA_CAMERA_SUPPORT=y
+ CONFIG_MEDIA_USB_SUPPORT=y
+ CONFIG_USB_VIDEO_CLASS=m
+-- 
+2.7.4
+

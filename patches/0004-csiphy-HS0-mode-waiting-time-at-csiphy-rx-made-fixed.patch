@@ -1,0 +1,28 @@
+From b0041acd90bd4da73bb5e7474d17258d4ffbadff Mon Sep 17 00:00:00 2001
+From: Akhil Xavier <akhilxavier@inforcecomputing.com>
+Date: Tue, 5 Jun 2018 18:38:23 +0530
+Subject: [PATCH 4/7] csiphy::HS0 mode waiting time at csiphy rx made fixed
+
+This change is done for imx230 RAW10 bit sensor. OV5640 and OV5645 are tested as working with this change.
+---
+ drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c
+index 3a09c9d..a186f13 100644
+--- a/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c
++++ b/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c
+@@ -99,8 +99,8 @@ static void csiphy_lanes_enable(struct csiphy_device *csiphy,
+ 	u8 val, l = 0;
+ 	int i = 0;
+ 
+-	settle_cnt = csiphy_settle_cnt_calc(pixel_clock, bpp, c->num_data,
+-					    csiphy->timer_clk_rate);
++	settle_cnt = 0x0E;/*csiphy_settle_cnt_calc(pixel_clock, bpp, c->num_data,
++					    csiphy->timer_clk_rate);*/ //2E
+ 
+ 	writel_relaxed(0x1, csiphy->base +
+ 		       CAMSS_CSI_PHY_GLBL_T_INIT_CFG0);
+-- 
+2.7.4
+
